@@ -1,0 +1,676 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_ASSETS 100
+#define MAX_BUDGETS 50
+
+/* =========================
+   STRUCTURES
+   ========================= */
+
+typedef struct
+{
+    int assetID;
+    char assetName[50];
+    char assetType[30];
+    float purchaseValue;
+    char department[50];
+    char condition[30];
+
+} Asset;
+
+
+typedef struct
+{
+    int budgetID;
+    char department[50];
+    float allocatedBudget;
+    float expenditure;
+
+} Budget;
+
+
+/* =========================
+   ARRAYS
+   ========================= */
+
+Asset assets[MAX_ASSETS];
+Budget budgets[MAX_BUDGETS];
+
+int assetCount = 0;
+int budgetCount = 0;
+
+
+/* =========================
+   FUNCTION PROTOTYPES
+   ========================= */
+
+/* Main menu */
+void mainMenu(void);
+
+/* Asset functions */
+void assetMenu(void);
+void addAsset(void);
+void displayAssets(void);
+void searchAsset(void);
+
+/* Budget functions */
+void budgetMenu(void);
+void addBudget(void);
+void displayBudgets(void);
+void searchBudget(void);
+float calculateRemaining(Budget budget);
+void budgetReport(void);
+
+/* Input functions */
+int getInteger(char message[]);
+float getFloat(char message[]);
+void getString(char message[], char value[], int size);
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+int main(void)
+{
+    mainMenu();
+
+    return 0;
+}
+
+
+/* =========================
+   MAIN MENU
+   ========================= */
+
+void mainMenu(void)
+{
+    int choice;
+
+    do
+    {
+        printf("\n");
+        printf("=============================================\n");
+        printf("      ASSET AND BUDGET MANAGEMENT SYSTEM\n");
+        printf("=============================================\n");
+        printf("1. Asset Management\n");
+        printf("2. Budget Management\n");
+        printf("3. Exit\n");
+        printf("=============================================\n");
+
+        choice = getInteger("Enter your choice: ");
+
+        switch (choice)
+        {
+            case 1:
+                assetMenu();
+                break;
+
+            case 2:
+                budgetMenu();
+                break;
+
+            case 3:
+                printf("\nThank you for using the system.\n");
+                break;
+
+            default:
+                printf("\nInvalid choice. Please choose 1, 2 or 3.\n");
+        }
+
+    } while (choice != 3);
+}
+
+
+/* =====================================================
+   ASSET MANAGEMENT
+   ===================================================== */
+
+void assetMenu(void)
+{
+    int choice;
+
+    do
+    {
+        printf("\n");
+        printf("=============================================\n");
+        printf("              ASSET MANAGEMENT\n");
+        printf("=============================================\n");
+        printf("1. Add Asset\n");
+        printf("2. Display Assets\n");
+        printf("3. Search Asset\n");
+        printf("4. Return to Main Menu\n");
+        printf("=============================================\n");
+
+        choice = getInteger("Enter your choice: ");
+
+        switch (choice)
+        {
+            case 1:
+                addAsset();
+                break;
+
+            case 2:
+                displayAssets();
+                break;
+
+            case 3:
+                searchAsset();
+                break;
+
+            case 4:
+                break;
+
+            default:
+                printf("\nInvalid choice.\n");
+        }
+
+    } while (choice != 4);
+}
+
+
+/* =========================
+   ADD ASSET
+   ========================= */
+
+void addAsset(void)
+{
+    if (assetCount >= MAX_ASSETS)
+    {
+        printf("\nAsset storage is full.\n");
+        return;
+    }
+
+    printf("\n------------- ADD ASSET -------------\n");
+
+    assets[assetCount].assetID =
+        getInteger("Enter Asset ID: ");
+
+    getString(
+        "Enter Asset Name: ",
+        assets[assetCount].assetName,
+        sizeof(assets[assetCount].assetName)
+    );
+
+    getString(
+        "Enter Asset Type: ",
+        assets[assetCount].assetType,
+        sizeof(assets[assetCount].assetType)
+    );
+
+    assets[assetCount].purchaseValue =
+        getFloat("Enter Purchase Value: N$ ");
+
+    getString(
+        "Enter Department: ",
+        assets[assetCount].department,
+        sizeof(assets[assetCount].department)
+    );
+
+    getString(
+        "Enter Condition: ",
+        assets[assetCount].condition,
+        sizeof(assets[assetCount].condition)
+    );
+
+    assetCount++;
+
+    printf("\nAsset successfully added.\n");
+}
+
+
+/* =========================
+   DISPLAY ASSETS
+   ========================= */
+
+void displayAssets(void)
+{
+    int i;
+
+    if (assetCount == 0)
+    {
+        printf("\nNo assets have been registered.\n");
+        return;
+    }
+
+    printf("\n");
+    printf("=============== ASSET REGISTER ===============\n");
+
+    for (i = 0; i < assetCount; i++)
+    {
+        printf("\nAsset ID       : %d\n",
+               assets[i].assetID);
+
+        printf("Asset Name     : %s\n",
+               assets[i].assetName);
+
+        printf("Asset Type     : %s\n",
+               assets[i].assetType);
+
+        printf("Purchase Value : N$ %.2f\n",
+               assets[i].purchaseValue);
+
+        printf("Department     : %s\n",
+               assets[i].department);
+
+        printf("Condition      : %s\n",
+               assets[i].condition);
+
+        printf("---------------------------------------------\n");
+    }
+}
+
+
+/* =========================
+   SEARCH ASSET
+   ========================= */
+
+void searchAsset(void)
+{
+    int id;
+    int i;
+    int found = 0;
+
+    id = getInteger("Enter Asset ID to search: ");
+
+    for (i = 0; i < assetCount; i++)
+    {
+        if (assets[i].assetID == id)
+        {
+            printf("\nAsset Found!\n");
+
+            printf("Asset ID       : %d\n",
+                   assets[i].assetID);
+
+            printf("Asset Name     : %s\n",
+                   assets[i].assetName);
+
+            printf("Asset Type     : %s\n",
+                   assets[i].assetType);
+
+            printf("Purchase Value : N$ %.2f\n",
+                   assets[i].purchaseValue);
+
+            printf("Department     : %s\n",
+                   assets[i].department);
+
+            printf("Condition      : %s\n",
+                   assets[i].condition);
+
+            found = 1;
+
+            break;
+        }
+    }
+
+    if (found == 0)
+    {
+        printf("\nAsset not found.\n");
+    }
+}
+
+
+/* =====================================================
+   BUDGET MANAGEMENT
+   ===================================================== */
+
+void budgetMenu(void)
+{
+    int choice;
+
+    do
+    {
+        printf("\n");
+        printf("=============================================\n");
+        printf("             BUDGET MANAGEMENT\n");
+        printf("=============================================\n");
+        printf("1. Add Department Budget\n");
+        printf("2. Display Budgets\n");
+        printf("3. Search Budget\n");
+        printf("4. Budget Report\n");
+        printf("5. Return to Main Menu\n");
+        printf("=============================================\n");
+
+        choice = getInteger("Enter your choice: ");
+
+        switch (choice)
+        {
+            case 1:
+                addBudget();
+                break;
+
+            case 2:
+                displayBudgets();
+                break;
+
+            case 3:
+                searchBudget();
+                break;
+
+            case 4:
+                budgetReport();
+                break;
+
+            case 5:
+                break;
+
+            default:
+                printf("\nInvalid choice.\n");
+        }
+
+    } while (choice != 5);
+}
+
+
+/* =========================
+   ADD BUDGET
+   ========================= */
+
+void addBudget(void)
+{
+    if (budgetCount >= MAX_BUDGETS)
+    {
+        printf("\nBudget storage is full.\n");
+        return;
+    }
+
+    printf("\n---------- ADD DEPARTMENT BUDGET ----------\n");
+
+    budgets[budgetCount].budgetID =
+        getInteger("Enter Budget ID: ");
+
+    getString(
+        "Enter Department: ",
+        budgets[budgetCount].department,
+        sizeof(budgets[budgetCount].department)
+    );
+
+    budgets[budgetCount].allocatedBudget =
+        getFloat("Enter Allocated Budget: N$ ");
+
+    budgets[budgetCount].expenditure =
+        getFloat("Enter Expenditure: N$ ");
+
+    budgetCount++;
+
+    printf("\nBudget successfully added.\n");
+}
+
+
+/* =========================
+   CALCULATE REMAINING
+   ========================= */
+
+float calculateRemaining(Budget budget)
+{
+    return budget.allocatedBudget - budget.expenditure;
+}
+
+
+/* =========================
+   DISPLAY BUDGETS
+   ========================= */
+
+void displayBudgets(void)
+{
+    int i;
+    float remaining;
+
+    if (budgetCount == 0)
+    {
+        printf("\nNo budgets have been registered.\n");
+        return;
+    }
+
+    printf("\n");
+    printf("=============== BUDGET INFORMATION ===============\n");
+
+    for (i = 0; i < budgetCount; i++)
+    {
+        remaining = calculateRemaining(budgets[i]);
+
+        printf("\nBudget ID        : %d\n",
+               budgets[i].budgetID);
+
+        printf("Department       : %s\n",
+               budgets[i].department);
+
+        printf("Allocated Budget : N$ %.2f\n",
+               budgets[i].allocatedBudget);
+
+        printf("Expenditure      : N$ %.2f\n",
+               budgets[i].expenditure);
+
+        printf("Remaining Budget : N$ %.2f\n",
+               remaining);
+
+        if (remaining >= 0)
+        {
+            printf("Status           : WITHIN BUDGET\n");
+        }
+        else
+        {
+            printf("Status           : OVER BUDGET\n");
+        }
+
+        printf("---------------------------------------------\n");
+    }
+}
+
+
+/* =========================
+   SEARCH BUDGET
+   ========================= */
+
+void searchBudget(void)
+{
+    char department[50];
+    int i;
+    int found = 0;
+    float remaining;
+
+    getString(
+        "Enter Department to search: ",
+        department,
+        sizeof(department)
+    );
+
+    for (i = 0; i < budgetCount; i++)
+    {
+        if (strcmp(budgets[i].department, department) == 0)
+        {
+            remaining = calculateRemaining(budgets[i]);
+
+            printf("\nBudget Found!\n");
+
+            printf("Budget ID        : %d\n",
+                   budgets[i].budgetID);
+
+            printf("Department       : %s\n",
+                   budgets[i].department);
+
+            printf("Allocated Budget : N$ %.2f\n",
+                   budgets[i].allocatedBudget);
+
+            printf("Expenditure      : N$ %.2f\n",
+                   budgets[i].expenditure);
+
+            printf("Remaining Budget : N$ %.2f\n",
+                   remaining);
+
+            if (remaining >= 0)
+            {
+                printf("Status           : WITHIN BUDGET\n");
+            }
+            else
+            {
+                printf("Status           : OVER BUDGET\n");
+            }
+
+            found = 1;
+
+            break;
+        }
+    }
+
+    if (found == 0)
+    {
+        printf("\nDepartment budget not found.\n");
+    }
+}
+
+
+/* =========================
+   BUDGET REPORT
+   ========================= */
+
+void budgetReport(void)
+{
+    int i;
+    int exceeded = 0;
+
+    float totalAllocated = 0;
+    float totalExpenditure = 0;
+    float totalRemaining;
+
+    if (budgetCount == 0)
+    {
+        printf("\nNo budget information available.\n");
+        return;
+    }
+
+    for (i = 0; i < budgetCount; i++)
+    {
+        totalAllocated += budgets[i].allocatedBudget;
+
+        totalExpenditure += budgets[i].expenditure;
+    }
+
+    totalRemaining =
+        totalAllocated - totalExpenditure;
+
+    printf("\n");
+    printf("=============== BUDGET REPORT ===============\n");
+
+    printf("Total Allocated Budget : N$ %.2f\n",
+           totalAllocated);
+
+    printf("Total Expenditure      : N$ %.2f\n",
+           totalExpenditure);
+
+    printf("Remaining Budget       : N$ %.2f\n",
+           totalRemaining);
+
+    printf("\nDepartments Exceeding Budget:\n");
+
+    for (i = 0; i < budgetCount; i++)
+    {
+        if (budgets[i].expenditure >
+            budgets[i].allocatedBudget)
+        {
+            printf("- %s\n",
+                   budgets[i].department);
+
+            exceeded++;
+        }
+    }
+
+    if (exceeded == 0)
+    {
+        printf("No departments have exceeded their budget.\n");
+    }
+}
+
+
+/* =====================================================
+   INPUT VALIDATION
+   ===================================================== */
+
+int getInteger(char message[])
+{
+    int value;
+    int result;
+
+    while (1)
+    {
+        printf("%s", message);
+
+        result = scanf("%d", &value);
+
+        if (result == 1)
+        {
+            while (getchar() != '\n')
+            {
+                /* Clear input */
+            }
+
+            return value;
+        }
+
+        printf("Invalid input. Please enter a whole number.\n");
+
+        while (getchar() != '\n')
+        {
+            /* Clear input */
+        }
+    }
+}
+
+
+/* =========================
+   GET FLOAT
+   ========================= */
+
+float getFloat(char message[])
+{
+    float value;
+    int result;
+
+    while (1)
+    {
+        printf("%s", message);
+
+        result = scanf("%f", &value);
+
+        if (result == 1 && value >= 0)
+        {
+            while (getchar() != '\n')
+            {
+                /* Clear input */
+            }
+
+            return value;
+        }
+
+        printf("Invalid amount. Please enter a non-negative number.\n");
+
+        while (getchar() != '\n')
+        {
+            /* Clear input */
+        }
+    }
+}
+
+
+/* =========================
+   GET STRING
+   ========================= */
+
+void getString(char message[], char value[], int size)
+{
+    do
+    {
+        printf("%s", message);
+
+        fgets(value, size, stdin);
+
+        value[strcspn(value, "\n")] = '\0';
+
+        if (strlen(value) == 0)
+        {
+            printf("Input cannot be empty.\n");
+        }
+
+    } while (strlen(value) == 0);
+}
