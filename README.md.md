@@ -222,7 +222,3 @@ Input/Output → Use scanf and printf for user interaction.
 
 Modular Programming → Separation of logic into reusable functions.
 
-
-
-
-
