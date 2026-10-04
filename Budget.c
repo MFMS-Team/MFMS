@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// Function prototypes
 int getNumberOfDepartments();
 double getBudget(int dept);
 double getExpenditure(int dept);
@@ -37,17 +36,35 @@ int getNumberOfDepartments() {
 }
 
 double getBudget(int dept) {
-    double budget;
-    printf("\nEnter budget for Department %d: ", dept);
-    scanf("%lf", &budget);
-    return budget;
+    double allocated budget;
+
+    do{
+printf("Enter allocate budget: ", dept);
+if(scanf("%lf", &allocated_budget)!=1 || allocated_budget<=0.00) {
+printf("Invalid allocated budget entered. Please try again.\n");
+while(getchar()!='\n');
+allocated_budget=-1.00;
+}
+}while(allocated_budget<=0.00);
+
+return allocated_budget;
+
 }
 
 double getExpenditure(int dept) {
     double expenditure;
-    printf("Enter expenditure for Department %d: ", dept);
-    scanf("%lf", &expenditure);
-    return expenditure;
+
+do{
+printf("Enter expenditure for Department %d: ", dept);
+if(scanf("%lf", &expenditure)!=1 || expenditure <=0.00) {
+printf("Invalid expenditure entered. Please try again.\n");
+while(getchar()!='\n');
+allocated_budget=-1.00;
+}
+}while(expenditure<=0.00);
+
+return expenditure;
+
 }
 
 double calculateRemaining(double budget, double expenditure) {
