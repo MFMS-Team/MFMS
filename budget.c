@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "budget.h"
+#include "assets.h"
 #include "utilities.h"
 
 int budget_count = 0;
@@ -8,12 +10,28 @@ char department_name[MAX_DEPARTMENTS][50];
 float allocated_budget[MAX_DEPARTMENTS];
 float expenditure[MAX_DEPARTMENTS];
 
+/* Compares two texts and ignores upper/lower case. Returns 1 if they match. */
+static int sameText(char a[], char b[])
+{
+    int i = 0;
+
+    while (a[i] != '\0' && b[i] != '\0')
+    {
+        if (tolower((unsigned char)a[i]) != tolower((unsigned char)b[i]))
+        {
+            return 0;
+        }
+        i++;
+    }
+    return a[i] == b[i];
+}
+
 /* Returns the position of a department, or -1 if it is not in the list. */
 static int findDepartment(char department[])
 {
     for (int i = 0; i < budget_count; i++)
     {
-        if (strcmp(department_name[i], department) == 0)
+        if (sameText(department_name[i], department) == 1)
         {
             return i;
         }
@@ -97,6 +115,11 @@ void addBudget(void)
         allocated = readAmount("Allocated budget (N$): ");
     }
     spent = readAmount("Expenditure so far (N$, enter 0 if none): ");
+    while (spent < 0)
+    {
+        printf("Error: the expenditure cannot be negative.\n");
+        spent = readAmount("Expenditure so far (N$, enter 0 if none): ");
+    }
 
     strcpy(department_name[budget_count], name);
     allocated_budget[budget_count] = allocated;
@@ -211,6 +234,11 @@ void updateBudget(void)
         break;
     case 2:
         amount = readAmount("Expenditure to add (N$): ");
+        if (amount < 0)
+        {
+            printf("Error: the expenditure cannot be negative.\n");
+            return;
+        }
         expenditure[index] = expenditure[index] + amount;
         break;
     default:
@@ -234,6 +262,16 @@ void deleteBudget(void)
         return;
     }
     index = findDepartment(name);
+
+    /* a department that still has assets cannot be deleted */
+    for (int i = 0; i < asset_count; i++)
+    {
+        if (strcmp(asset_department[i], department_name[index]) == 0)
+        {
+            printf("Cannot delete: assets are still assigned to this department.\n");
+            return;
+        }
+    }
 
     if (askYesNo("Are you sure you want to delete this department") == 0)
     {

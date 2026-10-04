@@ -235,6 +235,8 @@ void assetDepartmentReport(void)
     int count;
     int counted = 0;
     float total;
+    float counted_value = 0;
+    float all_value = 0;
 
     printf("\n===== ASSET DEPARTMENT REPORT =====\n");
     if (asset_count == 0)
@@ -258,12 +260,17 @@ void assetDepartmentReport(void)
         }
         printf("%-20s %-8d %.2f\n", department_name[d], count, total);
         counted = counted + count;
+        counted_value = counted_value + total;
     }
 
     /* assets whose department was deleted from the Budget module */
     if (counted < asset_count)
     {
-        printf("%-20s %-8d\n", "Other", asset_count - counted);
+        for (int i = 0; i < asset_count; i++)
+        {
+            all_value = all_value + purchase_value[i];
+        }
+        printf("%-20s %-8d %.2f\n", "Other", asset_count - counted, all_value - counted_value);
     }
 }
 

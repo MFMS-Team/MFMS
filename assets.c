@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "assets.h"
 #include "budget.h"
 #include "utilities.h"
@@ -17,12 +18,28 @@ char type_list[TYPE_COUNT][20] =
 char condition_list[CONDITION_COUNT][20] =
     {"Excellent", "Good", "Fair", "Poor"};
 
+/* Compares two texts and ignores upper/lower case. Returns 1 if they match. */
+static int sameText(char a[], char b[])
+{
+    int i = 0;
+
+    while (a[i] != '\0' && b[i] != '\0')
+    {
+        if (tolower((unsigned char)a[i]) != tolower((unsigned char)b[i]))
+        {
+            return 0;
+        }
+        i++;
+    }
+    return a[i] == b[i];
+}
+
 /* Returns the position of an asset, or -1 if the ID is not in the list. */
 static int findAsset(char id[])
 {
     for (int i = 0; i < asset_count; i++)
     {
-        if (strcmp(asset_id[i], id) == 0)
+        if (sameText(asset_id[i], id) == 1)
         {
             return i;
         }
@@ -313,19 +330,19 @@ void searchAsset(void)
     for (int i = 0; i < asset_count; i++)
     {
         match = 0;
-        if (choice == 1 && strcmp(asset_id[i], text) == 0)
+        if (choice == 1 && sameText(asset_id[i], text) == 1)
         {
             match = 1;
         }
-        else if (choice == 2 && strcmp(asset_name[i], text) == 0)
+        else if (choice == 2 && sameText(asset_name[i], text) == 1)
         {
             match = 1;
         }
-        else if (choice == 3 && strcmp(asset_type[i], text) == 0)
+        else if (choice == 3 && sameText(asset_type[i], text) == 1)
         {
             match = 1;
         }
-        else if (choice == 4 && strcmp(asset_department[i], text) == 0)
+        else if (choice == 4 && sameText(asset_department[i], text) == 1)
         {
             match = 1;
         }
