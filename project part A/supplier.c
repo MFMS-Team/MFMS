@@ -108,7 +108,7 @@ return;
 printf("Supplier Identity Number: %s\n", supplier_id[index]);
 printf("Supplier Name: %s\n", supplier_name[index]);
 printf("Contact Number: %s\n", supplier_phone[index]);
-printf("Sumplier Email: %s\n", supplier_email[index]);
+printf("Supplier Email: %s\n", supplier_email[index]);
 printf("Supplier Location: %s\n", supplier_location[index]);
 
 return;
@@ -326,7 +326,7 @@ return;
 }
 char search_id[25], search_name[50];
 int found=0, attempt=0, choice=0, ch, update=0, i;
-char number[20], id[20], name[50], email[50], location[50];
+char number[20], name[50], email[50], location[50];
 char confirm;
 do{
 found=0;
