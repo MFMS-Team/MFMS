@@ -19,6 +19,8 @@ void AssetMenu();
 void AddAsset(void);
 void DisplayAsset(void);
 void SearchAsset(void);
+void SaveAssets(void);
+void LoadAssets(void);
 void UpdateAsset(void);
 void DeleteAsset(void);
 /* Display */

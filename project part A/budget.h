@@ -15,6 +15,8 @@ void BudgetMenu();
 /* CRUD Operations */
 void AddBudget(void);
 void DisplayBudget(void);
+void SaveBudget(void);
+void LoadBudget(void);
 void SearchBudget(void);
 void UpdateBudget(void);
 void DeleteBudget(void);

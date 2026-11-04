@@ -579,6 +579,62 @@ return;
 
 return;
 }
+void SaveBudget(void) {
+if(budget_start==0) {
+printf("No budget records available to save.\n");
+return;
+}
+FILE*fp;
+
+fp=fopen("budget.txt", "w");
+
+if(fp==NULL) {
+printf("Failed to open budget file for writing.\n");
+return;
+}
+int i, count=0;
+
+for(i=0; i<budget_end; i++) {
+count++;
+fprintf(fp, "%s, %s, %.2f, %.2f\n", department_id[i], department_name[i], allocated_budget[i], expenditure[i]);
+}
+printf("_____________________________________\n");
+printf("%d budget records successfully saved.\n", count);
+printf("------------------------------------------------\n");
+fclose(fp);
+
+return; 
+
+}
+void LoadBudget(void) {
+FILE*fp;
+int count=0;
+fp=fopen("budget.txt", "r");
+
+if(fp==NULL) {
+printf("Failed to load budget from the file.\n");
+return;
+}
+while(fscanf(fp, "%24[^,], %49[^,], %f, %f\n", department_id[budget_start], department_name[budget_start], &allocated_budget[budget_start], &expenditure[budget_start])==4) {
+budget_start++;
+count++;
+if((budget_start+budget_end)==99) {
+printf("The employee list is full.\n");
+break;
+}
+}
+fclose(fp);
+budget_end=budget_start;
+if(count>0) {
+printf("\n============================\n");
+printf("%d budget records successfully loaded into budget list.\n", count);
+printf("=============================\n");
+}else {
+printf("No budget records available in the file.\n");
+
+}
+return;
+}
 void BudgetMenu() {
 int choice=0;
 do{
@@ -589,8 +645,10 @@ printf("1. Add Budget\n");
 printf("2. Display Budgets\n");
 printf("3. Search Budget\n");
 printf("4. Update Budget\n");
-printf("5. Delete Budget\n"); 
-printf("6. Exit\n");
+printf("5. Delete Budget\n");
+printf("6. Save budget in the file\n"); 
+printf("7: Load budget from the file\n");
+printf("8. Exit\n");
 printf("========================================\n");
 printf("Enter Choice: ");
 if(scanf("%d", &choice) != 1){
@@ -604,10 +662,12 @@ case 2:DisplayBudget();break;
 case 3:SearchBudget();break;
 case 4:UpdateBudget(); break;
 case 5: DeleteBudget();break;
-case 6: printf("Returning to Main Menu...\n"); break;
+case 6: SaveBudget(); break;
+case 7: LoadBudget(); break;
+case 8: printf("Returning to Main Menu...\n"); break;
 default: printf("Invalid choice entered. Please try again.\n"); break;
 }
-} while(choice != 6);
+} while(choice != 8);
 
 return;
 }

@@ -370,6 +370,7 @@ printf("Invalide Supplier Name entered. Please try again.\n");
 }
 
 }while(!ValidateSupplierName(search_name));
+
 for(i=0; i<supplier_end; i++) {
 if(strcmp(supplier_name[i], search_name)==0) {
 found=1;
@@ -377,6 +378,7 @@ break;
 }
 }
 break;
+
 case 3: printf("Thanks for interacting with our interface. Goodbey.\n"); return;
 default: printf("Invalid choice entered. Please try again"); continue;
 }
@@ -553,7 +555,7 @@ printf("<><><><><><><><><>><><><><><>><><><><><><><>\n");
 PrintSupplier(position);
 printf("__________________________________________________\n");
 printf("Do you really want to delete the supplier records?\n ");
-printf("Enter Y or y to update or any key to not update: ");
+printf("Enter Y or y to update or any key to not Delete: ");
 scanf(" %c", &confirm);
 while((ch=getchar())!='\n' && ch!=EOF);
 if(confirm=='Y' || confirm=='y') {
@@ -586,6 +588,64 @@ return;
 
 return;
 }
+
+void SaveSupplier(void) {
+if(supplier_start==0) {
+printf("No Supplier records available to save.\n");
+return;
+}
+FILE*fp;
+
+fp=fopen("supplier.txt", "w");
+
+if(fp==NULL) {
+printf("Failed to open Supplier file for writing.\n");
+return;
+}
+int i, count=0;
+
+for(i=0; i<supplier_end; i++) {
+count++;
+fprintf(fp, "%s, %s, %s, %s, %s\n", supplier_id[i], supplier_name[i], supplier_email[i], supplier_phone[i], supplier_location[i]);
+}
+printf("_____________________________________\n");
+printf("%d supplier records successfully saved.\n", count);
+printf("------------------------------------------------\n");
+fclose(fp);
+
+return; 
+}
+void LoadSupplier(void) {
+FILE*fp;
+int count=0;
+fp=fopen("supplier.txt", "r");
+
+if(fp==NULL) {
+printf("Failed to load supplier from the file.\n");
+return;
+}
+
+while(fscanf(fp, "%24[^,], %49[^,], %49[^,], %19[^,], %49[^\n]", supplier_id[supplier_start], supplier_name[supplier_start], supplier_email[supplier_start], supplier_phone[supplier_start], supplier_location[supplier_start])==5) {
+supplier_start++;
+count++;
+if((supplier_start+supplier_end)==99) {
+printf("The employee list is full.\n");
+break;
+}
+}
+fclose(fp);
+supplier_end=supplier_start;
+if(count>0) {
+printf("\n============================\n");
+printf("%d supplier records successfully loaded into supplier list.\n", count);
+printf("=============================\n");
+}else {
+printf("No supplier records available in the file.\n");
+
+}
+return;
+}
+
 void SupplierMenu() {
 int choice=0;
 do{
@@ -597,7 +657,9 @@ printf("2. Display Suppliers\n");
 printf("3. Search Supplier\n");
 printf("4. Update Supplier\n");
 printf("5. Delete Supplier\n");
-printf("6. Exit\n");
+printf("6. Save supplier in the file\n");
+printf("7. Load supplier from the file\n");
+printf("8. Exit\n");
 printf("===================================\n");
 printf("Enter Choice: ");
  if(scanf("%d", &choice) != 1){
@@ -610,10 +672,12 @@ case 2:DisplaySuppliers();break;
 case 3:SearchSupplier();break;
 case 4:UpdateSupplier();break;
 case 5:DeleteSupplier();break;
-case 6:printf("Returning to Main Menu...\n");break;
-default:printf("Invali choice entered. Please try again.\n");
+case 6: SaveSupplier(); break;
+case 7: LoadSupplier(); break;
+case 8:printf("Returning to Main Menu...\n");break;
+default:printf("Invali choice entered. Please try again.\n");break;
 }
-}while(choice!=6);
+}while(choice!=8);
 return;
 }
 

@@ -18,6 +18,8 @@ void SupplierMenu();
 /* CRUD */
 void AddSupplier(void);
 void DisplaySuppliers(void);
+void SaveSupplier(void);
+void LoadSupplier(void);
 void SearchSupplier(void);
 void UpdateSupplier(void);
 void DeleteSupplier(void);

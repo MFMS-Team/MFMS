@@ -691,6 +691,7 @@ found=0;
 printf("\n============================================\n");
 printf("WELCOME TO SEARCH SUPPLIER LOCATION REPORT.\n");
 printf("==============================================\n");
+while(getchar()!='\n');
 do{
 printf("Enter supplier location to search: ");
 fgets(loca, sizeof(loca), stdin);
@@ -789,7 +790,7 @@ printf("==========================================\n");
 printf("\n1.Budget report.\n ");
 printf("2.Assets report\n");
 printf("3.Employee report\n");
-printf("4.Employee gender report\n");
+printf("4.Supplier Report\n");
 printf("5. Exit\n");
 printf("\n-----------------------------------------------\n");
 printf("Enter your choice: ");

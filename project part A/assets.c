@@ -315,10 +315,10 @@ printf("Enter asset name to search: ");
 fgets(search_name, sizeof(search_name), stdin);
 search_name[strcspn(search_name, "\n")]='\0';
 
-if(!ValidateAssetID(search_name)) {
+if(!ValidateAssetName(search_name)) {
 printf("Invalid the asset name you want to search entered. Please try again.\n");
 }
-}while(!ValidateAssetID(search_name));
+}while(!ValidateAssetName(search_name));
 
 for(i=0; i<asset_end; i++) {
 if(strcmp(search_name, asset_name[i])==0) {
@@ -663,6 +663,63 @@ return;
 
 return;
 }
+
+void SaveAssets(void) {
+if(asset_start==0) {
+printf("No assets records available to save.\n");
+return;
+}
+FILE*fp;
+
+fp=fopen("assets.txt", "w");
+
+if(fp==NULL) {
+printf("Failed to open assets file for writing.\n");
+return;
+}
+int i, count=0;
+
+for(i=0; i<asset_end; i++) {
+count++;
+fprintf(fp, "%s, %s, %s, %s, %s, %.2f\n", asset_id[i], asset_name[i], asset_type[i], asset_department[i], asset_condition[i], purchase_value[i]);
+}
+printf("_____________________________________\n");
+printf("%d  Assets records successfully saved.\n", count);
+printf("------------------------------------------------\n");
+fclose(fp);
+
+return; 
+}
+void LoadAssets(void) {
+FILE*fp;
+int count=0;
+fp=fopen("assets.txt", "r");
+
+if(fp==NULL) {
+printf("Failed to load assets records from the file.\n");
+return;
+}
+
+while(fscanf(fp, "%24[^,], %49[^,], %49[^,], %49[^,], %29[^,], %f\n", asset_id[asset_start], asset_name[asset_start], asset_type[asset_start], asset_department[asset_start], asset_condition[asset_start], &purchase_value[asset_start])==6) {
+asset_start++;
+count++;
+if((asset_start+asset_end)==99) {
+printf("The assets list is full.\n");
+break;
+}
+}
+fclose(fp);
+asset_end=asset_start;
+if(count>0) {
+printf("\n============================\n");
+printf("%d asset records successfully loaded into asset list.\n", count);
+printf("=============================\n");
+}else {
+printf("No asset records available in the file.\n");
+
+}
+return;
+}
 void AssetMenu() {
 int choice=0;
 
@@ -675,7 +732,9 @@ printf("2. Display assets\n");
 printf("3. Search asset\n");
 printf("4. Update asset\n");
 printf("5. Delete asset\n");
-printf("6. Return to menu\n");
+printf("6. Load Assets records from file.\n");
+printf("7. Save Assets records in the file.\n");
+printf("8. Return to menu\n");
 printf("\n-----------------------------------------------------------------\n");
 printf("Enter your choice: ");
 if(scanf("%d", &choice)!=1 || choice<=0) {
@@ -690,10 +749,12 @@ case 2: DisplayAsset(); break;
 case 3: SearchAsset(); break;
 case 4: UpdateAsset(); break;
 case 5: DeleteAsset(); break;
-case 6: printf("Returning to MENU..........................\n"); return;
+case 6: LoadAssets(); break;
+case 7: SaveAssets(); break;
+case 8: printf("Returning to MENU..........................\n"); return;
 default: printf("Invalid choice entered. Please try again.\n");
 }
-}while(choice!=6);
+}while(choice!=8);
 
 return;
 }

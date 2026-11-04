@@ -1318,7 +1318,85 @@ return;
 }while(!found);
 return;
 }
-void EmployeeMenu() {
+void SaveEmployee(void) {
+if(start==0) {
+printf("No employee records available to save.\n");
+return;
+}
+FILE*fp;
+
+fp=fopen("employee.dat", "wb");
+
+if(fp==NULL) {
+printf("Failed to open employee file for writing.\n");
+return;
+}
+int i, count=0;
+
+for(i=0; i<end; i++) {
+count++;
+fwrite(employee_id[i], sizeof(employee_id[i]), 1, fp);
+fwrite(employeeName[i], sizeof(employeeName[i]), 1, fp);
+fwrite(employeeGender[i], sizeof(employeeGender[i]), 1, fp);
+fwrite(maritalStatus[i], sizeof(maritalStatus[i]), 1, fp);
+fwrite(department[i], sizeof(department[i]), 1, fp);
+fwrite(position[i], sizeof(position[i]), 1, fp);
+fwrite(phoneNumber[i], sizeof(phoneNumber[i]), 1, fp);
+fwrite(email[i], sizeof(email[i]), 1, fp);
+fwrite(employmentStatus[i], sizeof(employmentStatus[i]), 1, fp);
+fwrite(dateHired[i], sizeof(dateHired[i]), 1, fp);
+fwrite(&basicSalary[i], sizeof(float), 1, fp);
+fwrite(&housingAllowance[i], sizeof(float), 1, fp);
+fwrite(&transportAllowance[i], sizeof(float), 1, fp);
+
+}
+printf("_____________________________________\n");
+printf("%d employee records successfully saved.\n", count);
+printf("------------------------------------------------\n");
+fclose(fp);
+return;
+}
+void LoadEmployee(void) {
+FILE*fp;
+int count=0;
+fp=fopen("employee.dat", "rb");
+
+if(fp==NULL) {
+printf("Failed to load employees from the file.\n");
+return;
+}
+
+while(start<100) {
+if(fread(employee_id[start], sizeof(employee_id[start]), 1, fp)!=1) {
+break;
+}
+fread(employeeName[start], sizeof(employeeName[start]), 1, fp);
+fread(employeeGender[start], sizeof(employeeGender[start]), 1, fp);
+fread(maritalStatus[start], sizeof(maritalStatus[start]), 1, fp);
+fread(department[start], sizeof(department[start]), 1, fp);
+fread(position[start], sizeof(position[start]), 1, fp);
+fread(phoneNumber[start], sizeof(phoneNumber[start]), 1, fp);
+fread(email[start], sizeof(email[start]), 1, fp);
+fread(employmentStatus[start], sizeof(employmentStatus[start]), 1, fp);
+fread(dateHired[start], sizeof(dateHired[start]), 1, fp);
+fread(&basicSalary[start], sizeof(float), 1, fp);
+fread(&housingAllowance[start], sizeof(float), 1, fp);
+fread(&transportAllowance[start], sizeof(float), 1, fp);
+start++;
+count++;
+}
+fclose(fp);
+end=start;
+if(count>0) {
+printf("\n============================\n");
+printf("%d employee records successfully loaded into employee list.\n", count);
+printf("=============================\n");
+}else {
+printf("No employee records available in the file.\n");
+}
+return;
+}
+void EmployeeMenu(){
 int choice=0;
 do{
 printf("==========================================\n");
@@ -1330,7 +1408,9 @@ printf("3. Search Employee.\n");
 printf("4. Update Employee.\n");
 printf("5. Delete Employee.\n");
 printf("6. Sort Employees.\n");
-printf("7. Return To Main Menu.\n");
+printf("7. Load employee from file\n");
+printf("8. Save employee in the file\n");
+printf("9. Return To Main Menu.\n");
 printf("==========================================\n");
 printf("Enter Choice: ");
 if(scanf("%d", &choice)!=1 || choice<=0 ) {
@@ -1345,10 +1425,12 @@ case 3: SearchEmployee(end); break;
 case 4: UpdateEmployee(end); break;
 case 5: DeleteEmployee(); break;
 case 6:SortEmployees(end); break;
-case 7:printf("Thanks for interacting with our employee interface. Goodbey.\n"); break;
+case 7: LoadEmployee(); break;
+case 8: SaveEmployee(); break;
+case 9:printf("Thanks for interacting with our employee interface. Goodbey.\n"); break;
 default: printf("Invalid choice entered. please try again.\n"); break;
 }
-}while(choice!=7);
+}while(choice!=9);
 return;
 }
 
