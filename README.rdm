@@ -1,0 +1,69 @@
+Supplier Management Module
+
+The Supplier Management Module manages supplier information used by the municipality.
+
+Implemented in supplier and supplier.
+
+Supplier Information Stored
+Supplier ID
+Supplier Name
+Supplier Email
+Supplier Phone Number
+Supplier Location
+
+Supplier Features
+CRUD Operations
+Add Supplier
+Display Suppliers
+Search Supplier
+Update Supplier
+Delete Supplier
+
+Search Options
+
+Suppliers may be searched using:
+
+Supplier ID
+Supplier Name
+
+Update Options
+
+Users may update:
+
+Supplier Name
+Supplier Email
+Supplier Phone Number
+Supplier Location
+
+Validation
+
+The system validates:
+
+Supplier ID
+Supplier Name
+Email Address
+Phone Number
+Location
+
+Supplier Reports
+Complete Supplier Listing
+Supplier Location Report
+Total Supplier Report
+
+Supplier File Handling
+
+Supplier data is stored in:
+
+Plain Text
+supplier.txt
+
+Supplier Menu
+Plain Text
+1. Add Supplier
+2. Display Suppliers
+3. Search Supplier
+4. Update Supplier
+5. Delete Supplier
+6. Save Supplier
+7. Load Supplier
+8. Exit
