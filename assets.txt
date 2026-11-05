@@ -1,0 +1,3 @@
+54, Car, Vehicle, Finance, Good, 450000.00
+58, Bus, Vehicle, Human Resources, Excellent, 1000000.00
+44, Lenovo, Computer, Information Technology, Excellent, 30000.00
