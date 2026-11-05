@@ -1,0 +1,29 @@
+ Budget Management Module
+
+The Budget Management Module enables municipalities to monitor departmental budgets and expenditures.
+
+Budget Information
+
+Department ID
+Department Name
+Allocated Budget
+Expenditure
+
+Features
+
+Add Budget
+Search Budget
+Display Budget
+Update Budget
+Delete Budget
+Save Budget
+Load Budget
+
+Budget Monitoring
+
+The module calculates:
+
+Remaining Budget
+Budget Utilization
+Budget Health Status
+Overspending Detection
