@@ -1,0 +1,79 @@
+=========================================================
+README.RDM
+=========================================================
+
+PROJECT NAME
+------------
+ASSET MANAGEMENT SYSTEM
+
+AUTHOR
+------
+HARRY GAYA
+
+INSTITUTION
+-----------
+Namibia University of Science and Technology (NUST)
+
+QUALIFICATION
+-------------
+Bachelor of Computer Science
+=========================================================
+PROJECT OVERVIEW
+=========================================================
+The Asset Management System is a console-based application
+developed using the C Programming Language.
+The system is designed to assist organizations in managing
+their assets by providing facilities to add, search,
+update, delete, display, save and load asset records.
+The system stores information about organizational assets
+including their identification number, name, type,
+department, condition and purchase value. 【1-c73106】
+=========================================================
+FUNCTIONALITIES IMPLEMENTED
+=========================================================
+1. Add Asset
+Captures new asset details into the system.
+---------------------------------------------------------
+2. Display Assets
+Displays all asset records stored in the system.
+---------------------------------------------------------
+3. Search Asset
+Allows searching for assets using:
+- Asset ID
+- Asset Name
+---------------------------------------------------------
+4. Update Asset
+Allows modification of existing asset details.
+---------------------------------------------------------
+5. Delete Asset
+Removes an existing asset record from the system.
+---------------------------------------------------------
+6. Sort Assets
+Sorts asset records alphabetically.
+---------------------------------------------------------
+7. Save Assets
+Saves asset records into a file.
+---------------------------------------------------------
+8. Load Assets
+Loads asset records from a file.
+=========================================================
+ASSET INFORMATION STORED
+=========================================================
+The system stores:
+- Asset ID
+- Asset Name
+- Asset Type
+- Asset Department
+- Asset Condition
+- Purchase Value
+【1-c73106】
+=========================================================
+ASSET TYPES AVAILABLE
+=========================================================
+The system allows selection of various asset types such as:
+- Vehicle
+- Computer
+- Equipment
+- Building
+- Furniture
+- Infrastructure
