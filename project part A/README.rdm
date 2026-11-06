@@ -1,9 +1,8 @@
 Project Team
 
-This project was developed collaboratively by a group of students as part of the requirements for the Bachelor of Computer Science in Cyber Security (NQF Level 7).
+This project was developed collaboratively by a group of students as part of the requirements for the Bachelor of Computer Science (NQF Level 7).
 
 Team Members
-
 
 LASARUS ANGULA  225133636
 ARNOTH SHIKUKUTU  225170353
@@ -13,67 +12,44 @@ HARRY GAYA  224088998
 KATENGELE LAMEK  224025767
 UAARUKAPO KUHANGA  224087975
 
-
-
 Project Contribution
 
-The team worked collaboratively on the design, development, testing, documentation, and implementation of the Municipal Financial Management System (MFMS). The project incorporates multiple modules including:
+The team worked collaboratively on the design, development, testing, documentation, 
+and implementation of the Municipal Financial Management System (MFMS).
+The project incorporates multiple modules including:
 
 Employee Management
 Budget Management
 Asset Management
 Supplier Management
 Reporting and Analytics
-The system was developed using the C Programming Language and demonstrates principles of modular programming, file handling, data validation, searching, sorting, and statistical reporting.
+The system was developed using the C Programming Language and demonstrates principles of modular programming, file handling, 
+data validation, searching, sorting, and statistical reporting.
 
 
 License
 
 This project was developed for educational and academic purposes as part of practical studies in Computer Science, Cyber Security, Software Development, Municipal Financial Management Systems, and Database-Oriented Information Systems.
 
-
-
-
 System Features
-
 Employee Management
-
 Budget Management
-
 Asset Management
-
 Supplier Management
-
 Reporting & Analytics
-
 Input Validation
-
 Search Operations
-
 Update Operations
-
 Delete Operations
-
 Data Persistence
-
 Statistical Calculations
-
 Modular Programming
-
 Multi-File Architecture
-
 Menu-Driven Navigation
 
-
-
-
-
 1. Employee Management Module
-
 The Employee Management Module manages all municipal employee records.
-
 Implemented in employees and employees.
-
 Employee Information Stored
 Employee ID
 Full Name
@@ -117,13 +93,11 @@ Marital Status Report
 Employee File Handling
 
 Employee records are stored and retrieved from:
-
 employee.dat
 
 2. Budget Management Module
 
 The Budget Management Module tracks municipal budget allocations and expenditures.
-
 Implemented in budget and budget.
 
 Budget Information Stored
