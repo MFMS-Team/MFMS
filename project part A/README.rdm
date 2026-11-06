@@ -1,0 +1,468 @@
+Project Team
+
+This project was developed collaboratively by a group of students as part of the requirements for the Bachelor of Computer Science in Cyber Security (NQF Level 7).
+
+Team Members
+
+
+LASARUS ANGULA  225133636
+ARNOTH SHIKUKUTU  225170353
+AINA KUUME  225168448
+TOIVO KANDOMBO  225045419
+HARRY GAYA  224088998
+KATENGELE LAMEK  224025767
+UAARUKAPO KUHANGA  224087975
+
+
+
+Project Contribution
+
+The team worked collaboratively on the design, development, testing, documentation, and implementation of the Municipal Financial Management System (MFMS). The project incorporates multiple modules including:
+
+Employee Management
+Budget Management
+Asset Management
+Supplier Management
+Reporting and Analytics
+The system was developed using the C Programming Language and demonstrates principles of modular programming, file handling, data validation, searching, sorting, and statistical reporting.
+
+
+License
+
+This project was developed for educational and academic purposes as part of practical studies in Computer Science, Cyber Security, Software Development, Municipal Financial Management Systems, and Database-Oriented Information Systems.
+
+
+
+
+System Features
+
+Employee Management
+
+Budget Management
+
+Asset Management
+
+Supplier Management
+
+Reporting & Analytics
+
+Input Validation
+
+Search Operations
+
+Update Operations
+
+Delete Operations
+
+Data Persistence
+
+Statistical Calculations
+
+Modular Programming
+
+Multi-File Architecture
+
+Menu-Driven Navigation
+
+
+
+
+
+1. Employee Management Module
+
+The Employee Management Module manages all municipal employee records.
+
+Implemented in employees and employees.
+
+Employee Information Stored
+Employee ID
+Full Name
+Gender
+Marital Status
+Department
+Position
+Phone Number
+Email Address
+Employment Status
+Date Hired
+Basic Salary
+Housing Allowance
+Transport Allowance
+
+Employee Features
+
+CRUD Operations
+
+Add Employee
+Display Employees
+Search Employee
+Update Employee
+Delete Employee
+
+Employee Analysis
+
+Department Statistics
+Top Earner Analysis
+Low Earner Analysis
+Employee Sorting
+Department Search
+
+Employee Reports
+
+Salary Statistics
+Gender Report
+Department Report
+Marital Status Report
+
+Employee File Handling
+
+Employee records are stored and retrieved from:
+
+employee.dat
+
+2. Budget Management Module
+
+The Budget Management Module tracks municipal budget allocations and expenditures.
+
+Implemented in budget and budget.
+
+Budget Information Stored
+
+Department ID
+Department Name
+Allocated Budget
+Expenditure
+
+Available Departments
+
+Finance
+Human Resources
+Information Technology
+Procurement
+Engineering
+Water Management
+Electricity Services
+Town Planning
+Customer Care
+Legal Services
+
+Budget Features
+
+CRUD Operations
+
+Add Budget
+Display Budget
+Search Budget
+Update Budget
+Delete Budget
+
+Budget Calculations
+
+The system can calculate:
+
+Total Budget
+Total Expenditure
+Remaining Budget
+Budget Utilization
+Over-Budget Departments
+
+Budget Reports
+
+Total Budget Report
+Remaining Budget Report
+Exceeded Budget Report
+Budget Statistics Report
+
+Budget Health Indicators
+Utilization	Status
+
+≤ 75%	       HEALTHY
+> 75%	       WARNING
+> 90%	       CRITICAL
+> 100%	       OVER BUDGET
+
+Based on expenditure analysis.
+
+Budget File Handling
+
+Budget records are stored in:
+
+budget.txt
+
+3. Asset Management Module
+
+The Asset Management Module manages municipal assets and infrastructure.
+
+Implemented in assets and assets.
+
+Asset Information Stored
+
+Asset ID
+Asset Name
+Asset Type
+Department
+Asset Condition
+Purchase Value
+
+Asset Categories
+
+Examples include:
+
+Vehicles
+Computers
+Buildings
+Printers
+Office Furniture
+Equipment
+Generators
+Water Infrastructure
+Electrical Infrastructure
+Other Assets
+
+Asset Features
+
+CRUD Operations
+
+Add Asset
+Display Asset
+Search Asset
+Update Asset
+Delete Asset
+
+Asset Reports
+
+Asset Type Report
+Asset Condition Report
+Asset Department Report
+Asset Statistics Report
+
+Asset Statistics
+
+The reporting system calculates:
+
+Highest Asset Value
+Lowest Asset Value
+Mean Asset Value
+Median Asset Value
+Mode Asset Value
+Asset Value Range
+
+Asset File Handling
+
+Asset information is saved to:
+
+assets.txt
+
+4. Supplier Management Module
+
+The Supplier Management Module manages supplier information used by the municipality.
+
+Implemented in supplier and supplier.
+
+Supplier Information Stored
+
+Supplier ID
+Supplier Name
+Supplier Email
+Supplier Phone Number
+Supplier Location
+
+Supplier Features
+
+CRUD Operations
+
+Add Supplier
+Display Suppliers
+Search Supplier
+Update Supplier
+Delete Supplier
+
+Search Options
+
+Suppliers may be searched using:
+
+Supplier ID
+Supplier Name
+
+Update Options
+
+Users may update:
+
+Supplier Name
+Supplier Email
+Supplier Phone Number
+Supplier Location
+
+Validation
+
+The system validates:
+
+Supplier ID
+Supplier Name
+Email Address
+Phone Number
+Location
+
+Supplier Reports
+
+Complete Supplier Listing
+Supplier Location Report
+Total Supplier Report
+
+Supplier File Handling
+
+Supplier data is stored in:
+
+supplier.txt
+
+Supplier Menu
+
+1. Add Supplier
+2. Display Suppliers
+3. Search Supplier
+4. Update Supplier
+5. Delete Supplier
+6. Save Supplier
+7. Load Supplier
+8. Exit
+ 
+
+5. Reporting and Analytics Module
+
+A dedicated reporting system provides statistical analysis and management reports across all modules.
+
+Implemented in reports and report.
+
+Available Reports
+
+Budget Reports
+
+Total Budget Report
+Remaining Budget Report
+Exceeded Budget Report
+Budget Statistics Report
+
+Asset Reports
+
+Asset Type Report
+Asset Condition Report
+Asset Department Report
+Asset Statistics Report
+
+Employee Reports
+Marital Status Report
+Salary Statistics Report
+Department Report
+Gender Report
+
+Supplier Reports
+Display Supplier Report
+Supplier Location Report
+Total Supplier Report
+
+Data Validation
+
+The system contains robust validation functions throughout every module.
+
+Employee Validation
+
+Employee ID Validation
+Name Validation
+Email Validation
+Phone Validation
+Date Validation
+
+Budget Validation
+
+Department ID Validation
+Department Name Validation
+
+Asset Validation
+
+Asset ID Validation
+Asset Name Validation
+
+Supplier Validation
+
+Supplier ID Validation
+Supplier Name Validation
+Phone Validation
+Email Validation
+Location Validation
+
+Project Structure
+Plain Text
+MFMS/
+
+Main.c
+
+employees.c
+employees.h
+
+budget.c
+budget.h
+
+assets.c
+assets.h
+
+supplier.c
+supplier.h
+
+reports.c
+report.h
+
+employee.dat
+budget.txt
+assets.txt
+supplier.txt
+
+README.md
+
+
+Technologies Used
+
+C Programming Language
+GCC Compiler
+Standard I/O Library (stdio.h)
+String Handling Library (string.h)
+Text Files
+Binary Files
+
+Compilation
+
+Compile the entire project using:
+
+
+gcc Main.c employees.c budget.c assets.c supplier.c reports.c -o mfms
+
+Run the application:
+
+Linux
+
+./mfms
+Windows
+
+mfms.exe
+Learning Outcomes
+
+This project demonstrates:
+
+Modular Programming
+Multi-File Programming
+Function Design
+Header File Usage
+CRUD Operations
+Data Structures Using Arrays
+Searching Algorithms
+Statistical Analysis
+File Handling
+Report Generation
+Municipal Resource Management
+Financial Management Systems Development
+
+
+Acknowledgement
+
+This project was developed by a student group for academic purposes as part of the Bachelor of Computer Science in Cyber Security (NQF Level 7).
+
+The Municipal Financial Management System (MFMS) was created to demonstrate practical application of software engineering principles including modular programming, file handling, data management, reporting systems, and financial information processing using the C Programming Language.
